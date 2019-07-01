@@ -25,18 +25,5 @@ namespace DemoPhotoAlbum.Models {
     /// The photos contained in this album.
     /// </summary>
     public IEnumerable<Photo> Photos { get; set; }
-
-    /// <summary>
-    /// Creates a new instance of the class, assigning only the valid photos based on their album IDs.
-    /// </summary>
-    /// <param name="album">The Web API model representing the album.</param>
-    /// <param name="photos">A collection of Web API models representing photos.</param>
-    // TODO: AutoMapper may help loosely couple this class from the Web API's models.
-    public PhotoAlbum(Album album, IEnumerable<Photo> photos) {
-      UserId = album.UserId;
-      Id = album.Id;
-      Title = album.Title;
-      Photos = photos.Where(p => p.AlbumId == album.Id);
-    }
   }
 }

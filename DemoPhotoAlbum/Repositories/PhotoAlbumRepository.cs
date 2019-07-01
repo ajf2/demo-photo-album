@@ -34,7 +34,12 @@ namespace DemoPhotoAlbum.Repositories {
       IEnumerable<Album> emptyAlbums = userId.HasValue ? await client.GetAlbumsAsync(userId.Value) : await client.GetAlbumsAsync();
       // Get the photos for each of the emptyAlbums and run the requests in parallel.
       IEnumerable<Photo> photos = (await Task.WhenAll(emptyAlbums.Select(a => client.GetPhotosAsync(a.Id)))).SelectMany(p => p);
-      IEnumerable<PhotoAlbum> photoAlbums = emptyAlbums.Select(a => new PhotoAlbum(a, photos));
+      IEnumerable<PhotoAlbum> photoAlbums = emptyAlbums.Select(a => new PhotoAlbum {
+        UserId = a.UserId,
+        Id = a.Id,
+        Title = a.Title,
+        Photos = photos.Where(p => p.AlbumId == a.Id)
+      });
       return photoAlbums;
     }
   }
