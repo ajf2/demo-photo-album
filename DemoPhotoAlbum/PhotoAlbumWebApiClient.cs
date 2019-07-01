@@ -7,10 +7,11 @@ using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 
 namespace DemoPhotoAlbum {
+  /// <summary>
+  /// Connects to the JSONPlaceholder Web API and returns album and photo data.
+  /// </summary>
   public class PhotoAlbumWebApiClient {
-    /// <summary>
-    /// A singleton HttpClient object, assigned with dependency injection in the constructor.
-    /// </summary>
+    // A singleton HttpClient object, assigned with dependency injection in the constructor.
     private readonly HttpClient http;
     private const string baseUrl = "https://jsonplaceholder.typicode.com";
 

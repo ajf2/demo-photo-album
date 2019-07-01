@@ -12,12 +12,20 @@ namespace DemoPhotoAlbum.Controllers {
   [ApiController]
   public class PhotoAlbumsController : ControllerBase {
 
+    /// <summary>
+    /// Data source for photo albums. Assigned by dependency injection in the constructor.
+    /// </summary>
     private readonly IPhotoAlbumRepository photoAlbumRepository;
 
     public PhotoAlbumsController(IPhotoAlbumRepository photoAlbumRepository) {
       this.photoAlbumRepository = photoAlbumRepository;
     }
 
+    /// <summary>
+    /// Asynchronously fetches a collection of <see cref="PhotoAlbum"/>s.
+    /// </summary>
+    /// <param name="userId">A user ID to filter by.</param>
+    /// <returns>A collection of <see cref="PhotoAlbum"/>s.</returns>
     // GET: api/PhotoAlbums?userId=5
     [HttpGet]
     public async Task<IEnumerable<PhotoAlbum>> GetAsync(int? userId = null) {

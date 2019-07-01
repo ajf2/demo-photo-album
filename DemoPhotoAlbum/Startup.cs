@@ -23,8 +23,11 @@ namespace DemoPhotoAlbum {
 
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services) {
+      // Use HttpClient as a singleton as it's best for performance and this will make it mockable.
       services.AddSingleton(new HttpClient());
+      // Make the PhotoAlbumWebApiClient injectable.
       services.AddTransient<PhotoAlbumWebApiClient>();
+      // Make the PhotoAlbumRepository injectable to controllers expecting an IPhotoAlbumRepository.
       services.AddTransient<IPhotoAlbumRepository, PhotoAlbumRepository>();
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
     }
