@@ -14,7 +14,7 @@ namespace DemoPhotoAlbum.Models {
     /// The ID of the album this photo belongs to.
     /// </summary>
     [DataMember(Name = "albumId")]
-    public int AlbumId { get; set; }
+    public int AlbumId { get; set; } // We may not need this property so it might be an idea to use AutoMapper to map these to DTOs that don't have this property and return the DTOs.
     /// <summary>
     /// The ID of this photo.
     /// </summary>
