@@ -9,10 +9,14 @@ using System.Threading.Tasks;
 namespace DemoPhotoAlbum {
   public class PhotoAlbumWebApiClient {
     /// <summary>
-    /// A singleton HttpClient object.
+    /// A singleton HttpClient object, assigned with dependency injection in the constructor.
     /// </summary>
-    private static readonly HttpClient http = new HttpClient();
+    private readonly HttpClient http;
     private const string baseUrl = "https://jsonplaceholder.typicode.com";
+
+    public PhotoAlbumWebApiClient(HttpClient httpClient) {
+      http = httpClient;
+    }
 
     /// <summary>
     /// Gets all albums from the remote service.
