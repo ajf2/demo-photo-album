@@ -15,29 +15,37 @@ namespace DemoPhotoAlbum {
     private const string baseUrl = "https://jsonplaceholder.typicode.com";
 
     /// <summary>
+    /// Gets all albums from the remote service.
+    /// </summary>
+    /// <returns>A collection of albums.</returns>
+    public Task<IEnumerable<Album>> GetAlbumsAsync() {
+      return GetAsync<IEnumerable<Album>>("albums");
+    }
+
+    /// <summary>
     /// Gets a collection of albums from the remote service.
     /// </summary>
-    /// <param name="userId">(Optional) The userId to filter by.</param>
+    /// <param name="userId">The userId to filter by.</param>
     /// <returns>A collection of albums.</returns>
-    public Task<IEnumerable<Album>> GetAlbumsAsync(int? userId) {
-      string urlSegment = "albums";
-      if (userId.HasValue) {
-        urlSegment += $"?userId={userId}";
-      }
-      return GetAsync<IEnumerable<Album>>(urlSegment);
+    public Task<IEnumerable<Album>> GetAlbumsAsync(int userId) {
+      return GetAsync<IEnumerable<Album>>($"albums?userId={userId}");
+    }
+
+    /// <summary>
+    /// Gets all the photos from the remote service.
+    /// </summary>
+    /// <returns>A collection of photos.</returns>
+    public Task<IEnumerable<Photo>> GetPhotosAsync() {
+      return GetAsync<IEnumerable<Photo>>("photos");
     }
 
     /// <summary>
     /// Gets a collection of photos from the remote service.
     /// </summary>
-    /// <param name="albumId">(Optional) The albumId to filter by.</param>
+    /// <param name="albumId">The albumId to filter by.</param>
     /// <returns>A collection of photos.</returns>
-    public Task<IEnumerable<Photo>> GetPhotosAsync(int? albumId) {
-      string urlSegment = "photos";
-      if (albumId.HasValue) {
-        urlSegment += $"?albumId={albumId}";
-      }
-      return GetAsync<IEnumerable<Photo>>(urlSegment);
+    public Task<IEnumerable<Photo>> GetPhotosAsync(int albumId) {
+      return GetAsync<IEnumerable<Photo>>($"photos?albumId={albumId}");
     }
 
     /// <summary>
