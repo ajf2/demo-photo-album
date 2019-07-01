@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DemoPhotoAlbum.Repositories {
   public interface IPhotoAlbumRepository {
-    IEnumerable<Album> GetPhotoAlbums();
-    Task<IEnumerable<Album>> GetPhotoAlbumsAsync();
-    IEnumerable<Album> GetPhotoAlbums(int userId);
-    Task<IEnumerable<Album>> GetPhotoAlbumsAsync(int userId);
+    IEnumerable<PhotoAlbum> GetPhotoAlbums();
+    Task<IEnumerable<PhotoAlbum>> GetPhotoAlbumsAsync();
+    IEnumerable<PhotoAlbum> GetPhotoAlbums(int userId);
+    Task<IEnumerable<PhotoAlbum>> GetPhotoAlbumsAsync(int userId);
   }
 }

@@ -10,24 +10,24 @@ using Microsoft.AspNetCore.Mvc;
 namespace DemoPhotoAlbum.Controllers {
   [Route("api/[controller]")]
   [ApiController]
-  public class AlbumsController : ControllerBase {
+  public class PhotoAlbumsController : ControllerBase {
 
     private readonly IPhotoAlbumRepository photoAlbumRepository;
 
-    public AlbumsController(IPhotoAlbumRepository photoAlbumRepository) {
+    public PhotoAlbumsController(IPhotoAlbumRepository photoAlbumRepository) {
       this.photoAlbumRepository = photoAlbumRepository;
     }
 
-    // GET: api/Albums
+    // GET: api/PhotoAlbums
     [HttpGet]
-    public async Task<IEnumerable<Album>> GetAsync() {
+    public async Task<IEnumerable<PhotoAlbum>> GetAsync() {
       var albums = await photoAlbumRepository.GetPhotoAlbumsAsync();
       return albums;
     }
 
-    // GET: api/Albums/5
+    // GET: api/PhotoAlbums/5
     [HttpGet("{id}", Name = "Get")]
-    public async Task<IEnumerable<Album>> Get(int id) {
+    public async Task<IEnumerable<PhotoAlbum>> Get(int id) {
       var albums = await photoAlbumRepository.GetPhotoAlbumsAsync(id);
       return albums;
     }

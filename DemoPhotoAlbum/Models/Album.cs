@@ -13,7 +13,5 @@ namespace DemoPhotoAlbum.Models {
     public int Id { get; set; }
     [DataMember(Name = "title")]
     public string Title { get; set; }
-    [DataMember(Name = "photos")]
-    public IEnumerable<Photo> Photos { get; set; }
   }
 }

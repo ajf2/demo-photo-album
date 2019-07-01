@@ -12,31 +12,25 @@ namespace DemoPhotoAlbum.Repositories {
       this.client = client;
     }
 
-    public IEnumerable<Album> GetPhotoAlbums() {
+    public IEnumerable<PhotoAlbum> GetPhotoAlbums() {
       return GetPhotoAlbumsAsync().Result;
     }
 
-    public IEnumerable<Album> GetPhotoAlbums(int userId) {
+    public IEnumerable<PhotoAlbum> GetPhotoAlbums(int userId) {
       return GetPhotoAlbumsAsync(userId).Result;
     }
 
-    public async Task<IEnumerable<Album>> GetPhotoAlbumsAsync() {
+    public async Task<IEnumerable<PhotoAlbum>> GetPhotoAlbumsAsync() {
       IEnumerable<Album> emptyAlbums = await this.client.GetAlbumsAsync();
       IEnumerable<Photo> photos = (await Task.WhenAll(emptyAlbums.Select(a => this.client.GetPhotosAsync(a.Id)))).SelectMany(p => p);
-      IEnumerable<Album> photoAlbums = emptyAlbums.Select(a => {
-        a.Photos = photos.Where(p => p.AlbumId == a.Id);
-        return a;
-      });
+      IEnumerable<PhotoAlbum> photoAlbums = emptyAlbums.Select(a => new PhotoAlbum(a, photos));
       return photoAlbums;
     }
 
-    public async Task<IEnumerable<Album>> GetPhotoAlbumsAsync(int userId) {
+    public async Task<IEnumerable<PhotoAlbum>> GetPhotoAlbumsAsync(int userId) {
       IEnumerable<Album> emptyAlbums = await this.client.GetAlbumsAsync(userId);
       IEnumerable<Photo> photos = (await Task.WhenAll(emptyAlbums.Select(a => this.client.GetPhotosAsync(a.Id)))).SelectMany(p => p);
-      IEnumerable<Album> photoAlbums = emptyAlbums.Select(a => {
-        a.Photos = photos.Where(p => p.AlbumId == a.Id);
-        return a;
-      });
+      IEnumerable<PhotoAlbum> photoAlbums = emptyAlbums.Select(a => new PhotoAlbum(a, photos));
       return photoAlbums;
     }
   }
