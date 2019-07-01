@@ -18,17 +18,10 @@ namespace DemoPhotoAlbum.Controllers {
       this.photoAlbumRepository = photoAlbumRepository;
     }
 
-    // GET: api/PhotoAlbums
+    // GET: api/PhotoAlbums?userId=5
     [HttpGet]
-    public async Task<IEnumerable<PhotoAlbum>> GetAsync() {
-      var albums = await photoAlbumRepository.GetPhotoAlbumsAsync();
-      return albums;
-    }
-
-    // GET: api/PhotoAlbums/5
-    [HttpGet("{id}", Name = "Get")]
-    public async Task<IEnumerable<PhotoAlbum>> Get(int id) {
-      var albums = await photoAlbumRepository.GetPhotoAlbumsAsync(id);
+    public async Task<IEnumerable<PhotoAlbum>> GetAsync(int? userId = null) {
+      var albums = await photoAlbumRepository.GetPhotoAlbumsAsync(userId);
       return albums;
     }
   }
