@@ -12,14 +12,14 @@ namespace DemoPhotoAlbum.Repositories {
     /// <summary>
     /// Returns <see cref="PhotoAlbum"/>s from the data source. Blocks until completion.
     /// </summary>
-    /// <param name="userId">(Optional) The user Id to filter by.</param>
+    /// <param name="userId">The user Id to filter by.</param>
     /// <returns>A collection of <see cref="PhotoAlbum"/>s.</returns>
-    IEnumerable<PhotoAlbum> GetPhotoAlbums(int? userId = null);
+    IEnumerable<PhotoAlbum> GetPhotoAlbums(int userId);
     /// <summary>
     /// Asynchronously returns <see cref="PhotoAlbum"/>s from the data source.
     /// </summary>
-    /// <param name="userId">(Optional) The user Id to filter by.</param>
+    /// <param name="userId">The user Id to filter by.</param>
     /// <returns>A collection of <see cref="PhotoAlbum"/>s.</returns>
-    Task<IEnumerable<PhotoAlbum>> GetPhotoAlbumsAsync(int? userId = null);
+    Task<IEnumerable<PhotoAlbum>> GetPhotoAlbumsAsync(int userId);
   }
 }

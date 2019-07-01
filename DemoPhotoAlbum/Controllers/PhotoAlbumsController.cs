@@ -28,7 +28,7 @@ namespace DemoPhotoAlbum.Controllers {
     /// <returns>A collection of <see cref="PhotoAlbum"/>s.</returns>
     // GET: api/PhotoAlbums?userId=5
     [HttpGet]
-    public async Task<IEnumerable<PhotoAlbum>> GetAsync(int? userId = null) {
+    public async Task<IEnumerable<PhotoAlbum>> GetAsync(int userId) {
       var albums = await photoAlbumRepository.GetPhotoAlbumsAsync(userId);
       return albums;
     }
